@@ -1,30 +1,90 @@
-# Pneumonia Detection using Chest X-ray Images
+# Pneumonia Detection using Deep Learning
 
-Pneumonia is an inflammatory condition primarily affecting the lungs, characterized by symptoms such as cough, chest pain, fever, and difficulty breathing. The goal of this project is to develop an automated system for detecting and classifying pneumonia in medical images.
+## Problem Statement
 
-![Symptoms of Pneumonia](https://user-images.githubusercontent.com/65142149/215302250-841fde71-e182-4ffd-8036-625a3a717de7.png)
+**Build a binary classifier to detect pneumonia using chest x-rays.**
 
-## Motivation
-The motivation behind this project is to leverage artificial intelligence to accurately detect and classify pneumonia in humans using chest X-ray images. By automating the diagnosis process, it can aid healthcare professionals in providing timely and accurate treatment.
+### Pneumonia
+> Pneumonia is an infection that inflames the air sacs in one or both lungs. The air sacs may fill with fluid or pus (purulent material), causing cough with phlegm or pus, fever, chills, and difficulty breathing. A variety of organisms, including bacteria, viruses and fungi, can cause pneumonia.  Chest X-ray, blood tests, and culture of the sputum may help confirm the diagnosis. The disease may be classified by where it was acquired, such as community- or hospital-acquired or healthcare-associated pneumonia.
 
-## Approach
-Transfer learning techniques were employed to build an artificial intelligence system capable of pneumonia detection. The system utilizes ResNet architectures and was implemented using Python and TensorFlow. Google Colab GPU and TensorBoard were utilized for efficient training and evaluation of the models.
+## Dataset description
 
-## Key Technologies Used
-- Python
-- TensorFlow
-- Google Colab GPU
-- TensorBoard
-- ResNet architectures
+> The dataset is organized into 3 folders (train, test, val) and contains subfolders for each image category (Pneumonia/Normal). There are 5,863 X-Ray images (JPEG) and 2 categories (Pneumonia/Normal).
+Chest X-ray images (anterior-posterior) were selected from retrospective cohorts of pediatric patients of one to five years old from Guangzhou Women and Children’s Medical Center, Guangzhou. All chest X-ray imaging was performed as part of patients’ routine clinical care. For the analysis of chest x-ray images, all chest radiographs were initially screened for quality control by removing all low quality or unreadable scans. The diagnoses for the images were then graded by two expert physicians before being cleared for training the AI system. In order to account for any grading errors, the evaluation set was also checked by a third expert.
 
-## The Dataset
-The dataset used in this project is organized into three folders: train, test, and val. It consists of X-ray images (JPEG) categorized into two classes: Pneumonia and Normal. The dataset contains a total of 5,863 images.
+<p align="center"><img height="350" width="700" src="Assests/pneumonia_train.png"  ></p>
 
-Chest X-ray images (anterior-posterior) were obtained from pediatric patients between the ages of one to five years old. These images were sourced from the Guangzhou Women and Children’s Medical Center in Guangzhou. Prior to training the AI system, all chest radiographs underwent quality control screening to remove low-quality or unreadable scans. Expert physicians then graded the images for diagnosis, with a third expert reviewing the evaluation set to account for any grading errors.
+## Model used :
+**Here is a small comparison of all the models tested in the project:**
 
-The dataset used in this project is available on Kaggle: [Chest X-Ray Images (Pneumonia)](https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia)
+<p align="center"><img height="350" width="700" src="Assests/comparison.png"></p>
 
-## Achievement
-The developed system successfully distinguished between bacterial and viral pneumonia on chest X-ray images. It serves as a prototype for potential application in the field of biomedical imaging, providing a valuable tool for diagnosing pneumonia accurately and efficiently.
+- ### Convolutional Neural Network
 
-**Credit:** Kermany, Daniel; Zhang, Kang; Goldbaum, Michael (2018), "Labeled Optical Coherence Tomography (OCT) and Chest X-Ray Images for Classification", Mendeley Data, V2, doi: 10.17632/rscbjbr9sj.2
+<p align="center"><img height="350" width="700" src="Assests/cnn.png"></p>
+
+```
+624/624 [==============================] - 11s 18ms/step
+Loss of the model is -  0.30433156475042683
+624/624 [==============================] - 10s 15ms/step
+Accuracy of the model is -  91.98718070983887 %
+```
+<p align="center"><img height="350" width="700" src="Assests/model_accuracy.png"></p>
+
+- ### Convolutional Neural Network(Different approach) :
+
+<p align="center"><img height="350" width="700" src="Assests/accuracy_cnn_2.png"></p>
+
+```
+624/624 [==============================] - 30s 49ms/step
+Test Accuracy: 68.91%
+652/652 [==============================] - 338s 518ms/step
+Train Accuracy: 66.33%
+```
+
+- ### DenseNet :
+
+<p align="center"><img height="350" width="700" src="Assests/densenet.png"></p>
+
+<p align="center"><img height="350" width="700" src="Assests/densenetperf.png"></p>
+
+```
+624/624 [==============================] - 132s 211ms/step
+Test Accuracy: 87.18%
+652/652 [==============================] - 622s 954ms/step
+Train Accuracy: 86.22%
+```
+- ### VGG16 :
+
+<p align="center"><img height="350" width="700" src="Assests/vgg16.png"></p>
+
+<p align="center"><img height="350" width="700" src="Assests/vgg16_perf.png"></p>
+
+```
+624/624 [==============================] - 226s 363ms/step
+Test Accuracy: 66.19%
+652/652 [==============================] - 1608s 2s/step
+Train Accuracy: 82.63%
+```
+
+
+- ### ResNet :
+
+<p align="center"><img height="350" width="700" src="Assests/resnet.png"></p>
+
+```
+624/624 [==============================] - 101s 162ms/step
+Test Accuracy: 73.40%
+652/652 [==============================] - 651s 999ms/step
+Train Accuracy: 88.92%
+```
+
+- ### InceptionNet :
+<p align="center"><img height="350" width="700" src="Assests/inceptionnet.png"></p>
+
+```
+624/624 [==============================] - 41s 66ms/step
+Test Accuracy: 76.76%
+652/652 [==============================] - 295s 453ms/step
+Train Accuracy: 91.26%
+```
